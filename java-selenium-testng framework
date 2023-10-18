@@ -99,7 +99,38 @@ public class ikea {
    Assert.assertTrue(cartIcon.isDisplayed(), "Item was not added to the cart successfully");
   
 	}                   
+@Test (priority=5)
+	public void uploadphotosearchtest() {
+		
+		
+		
+		 // Locate the search bar
+        WebElement cam=driver.findElement(By.id("search-box__visualsearch"));
+        cam.click();
+        
+        WebElement upload=driver.findElement(By.xpath("//input[@type=\"file\"]"));
+        
+        // location of photo to upload
+        upload.sendKeys("C:\\Users\\admin\\Pictures\\Screenshots\\Screenshot 2023-10-18 125741.png");
+		
+        
+        // Find the image element
+        WebElement imageElement = driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/div/section/img"));
+        
+        // Assert that the image is displayed
+        Assert.assertTrue(imageElement.isDisplayed(), "Image is not displayed");
+    
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
+        // Scroll down by 600 pixels
+        js.executeScript("window.scrollBy(0, 600)");
+
+       try {  Thread.sleep(100);} catch (InterruptedException e) { e.printStackTrace();}
+       
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(200));
+		
+    
+      }
 @AfterTest 
 	
     public void tearDown() {
